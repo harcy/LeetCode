@@ -1,0 +1,42 @@
+#include <string.h>
+
+#define Multiple 10
+#define INT_MAX 2147483647
+#define INT_MIN -2147483648
+int myAtoi(char* str) 
+{
+    int len;
+    long long sum=0;
+    char symbol='N';
+    len=strlen(str);
+    if(len==0)
+        return 0;
+    while (*str == ' ')
+            str++;    
+    if(*str=='+'||*str=='-')
+    {
+        symbol=*str;
+        str++;
+    }
+    if(*str=='\0')
+        return 0;
+    while(*str!='\0')
+    {
+        if(*str<'0'||*str>'9')
+        {
+            break;
+        }
+        else
+        {
+            sum=sum*Multiple+(*str-'0');
+            if(sum > INT_MAX)
+                return symbol=='-' ? INT_MIN : INT_MAX;
+            str++;
+        }
+        
+    }
+    if(symbol=='-')
+        return (int)(sum*(-1));
+    else
+        return (int)sum;
+}
