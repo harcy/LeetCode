@@ -1,0 +1,23 @@
+//代码是一种解题，另一种解题思路取数字的最高位和最低位，然后相比较，
+//若不同，则返回false，并且将原数字减去已经判断过的部分，然后继续循环判断
+
+int isPalindrome(int x)
+{
+    if(x<0)
+        return 0;
+    int orignalValue=x;
+    int reverseValue=0;
+    int yushu;
+    while(x/10!=0)
+        {
+            yushu=x%10;
+            reverseValue=reverseValue*10+yushu;
+            x=x/10;
+        }
+    reverseValue=reverseValue*10+x%10;
+    printf("%d ",reverseValue);
+    if(orignalValue==reverseValue)
+        return 1;
+    else
+        return 0;
+}
