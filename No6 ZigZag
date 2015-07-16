@@ -1,34 +1,43 @@
+#include <string.h>
+#include <stdlib.h>
+
 char* convert(char* s, int numRows)
 {
     int mylen=strlen(s);
     if(mylen==0||mylen<=numRows||numRows==1)
         return s;
-    char *result=(char *)malloc(sizeof(char)*mylen);
-    //int i=0,j=0;
+    char *result=(char *)malloc(sizeof(char)*(mylen+1));
     int temp=0,i=1,j=0;
-    //int temp=i;
     int init=0;
-    //temp=i;
+    int last;
     while(temp<mylen)
         {
             result[j]=s[temp];
             temp=temp+(2*(numRows-1));
             j++;
         }
-    //i++;
-    while(i<numRows)
+    while(i<numRows-1)
         {
             result[j]=s[i];
             init=2*(numRows-1);
-            while(init<temp)
+            while(init<=temp)
                 {
-                   result[++j]=s[init-i];
+                   if((init-i)>=mylen)
+                       break;
+                    result[++j]=s[init-i];
                    if((init+i)>=mylen)
-                       continue;
+                       break;
                    result[++j]=s[init+i];
                    init=init+(2*(numRows-1));
                 }
             i++;
+            j++;
         }
-        return result;
+      for(last=numRows-1;last<mylen;last=last+2*(numRows-1))
+          {
+              result[j]=s[last];
+              j++;
+          }
+      result[j]='\0';
+      return result;
 }
