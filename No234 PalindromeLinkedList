@@ -1,0 +1,50 @@
+struct ListNode *myfunction(struct ListNode *p, struct ListNode *q) //reverse linked list
+{
+    struct ListNode *pre=p;
+    struct ListNode *cur=p->next;
+    struct ListNode *np=cur->next;
+    p->next=NULL;
+    while(cur!=q)
+        {
+            cur->next=pre;
+            pre=cur;
+            cur=np;
+            np=np->next;
+        }
+    return pre;
+}
+
+bool isPalindrome(struct ListNode* head)
+{
+    struct ListNode *p=head;
+    struct ListNode *temp=head;
+    struct ListNode *q;
+    int n=0;
+    int i;
+    while(p!=NULL)
+        {
+            n++;
+            p=p->next;
+        }
+    if(n==1||n==0)
+        return true;
+    for(i=0;i<(n/2);i++)
+        temp=temp->next;
+    q=temp;
+    struct ListNode *myNode;
+    myNode=myfunction(head,q);
+    if(n%2!=0)
+        q=q->next;
+    while(myNode!=NULL&&q!=NULL)
+        {
+            if(myNode->val==q->val)
+                {
+                    myNode=myNode->next;
+                    q=q->next;
+                }
+                
+            else
+                return false;
+        }
+    return true;
+}
