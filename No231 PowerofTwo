@@ -1,0 +1,10 @@
+bool isPowerOfTwo(int n) 
+{
+    if(n<=0)
+       return false;
+    int flag=n&(n-1);
+    if(flag==0)
+       return true;
+    else
+       return false;
+}
