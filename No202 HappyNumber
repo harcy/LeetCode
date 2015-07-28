@@ -1,0 +1,23 @@
+int transion(int n)
+{
+    int sum=0;
+    int digit;
+    while(n)
+        {
+           digit=n%10;
+           sum+=digit*digit;
+           n=n/10;
+        }
+    return sum;
+}
+
+bool isHappy(int n)
+{
+    while(n!=1)
+        {
+            n=transion(n);
+            if(n==4)  //why if n==4 we can return false directly
+                return false;
+        }
+    return true;
+}
