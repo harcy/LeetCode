@@ -1,0 +1,12 @@
+int trailingZeroes(int n)
+{
+    int count_five=0;
+    int k=0;
+    while(n)
+        {
+            k=n/5;
+            count_five=count_five+k;
+            n=k;
+        }
+    return count_five;
+}
