@@ -1,0 +1,33 @@
+//one 
+bool isIsomorphic(char* s, char* t) {
+    int a[256]={0};
+    int b[256]={0};
+    int i;
+    for(i=0;i<strlen(s);i++)
+    {
+       if(a[s[i]]!=b[t[i]])
+          return false;
+        a[s[i]]=i+1;
+        b[t[i]]=i+1;
+    }
+    return true;
+}
+
+//two
+bool isIsomorphic(char* s, char* t) {
+    int a[256]={0};
+    int b[256]={0};
+    int i;
+    for(i=0;i<strlen(s);i++)
+    {
+        if(a[s[i]]==0)
+           a[s[i]]=t[i];
+        else if(a[s[i]]!=t[i])
+            return false;
+        if(b[t[i]]==0)
+           b[t[i]]=s[i];
+        else if(b[t[i]]!=s[i])
+            return false;
+    }
+    return true;
+}
