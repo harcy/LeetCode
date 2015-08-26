@@ -1,0 +1,50 @@
+//so suck code
+//WTF,My God!
+
+public class Solution {
+    public int[] plusOne(int[] digits) {
+    int digitsSize=digits.length;
+    int[] returnSize=new int[digitsSize];
+    int len=digitsSize;
+    int i;
+    int j=len;
+    int add=0;
+    int endVal=digits[digitsSize-1]+1;
+    if(endVal==10)
+    {
+        add=1;
+        returnSize[j-1]=0;
+    }
+    else
+        returnSize[j-1]=endVal;
+    j--;    
+    for(i=digitsSize-2;i>=0;i--)
+    {
+        if(digits[i]+add==10)
+        {
+            returnSize[j-1]=0;
+            add=1;
+            j--;
+        }
+        else
+        {
+            returnSize[j-1]=digits[i]+add;
+            add=0;
+            j--;
+        }
+    }
+    if(add==1)
+    {
+        int[] result=new int[digitsSize+1];
+        result[0]=add;
+        for(i=1;i<result.length;i++)
+           result[i]=returnSize[i-1];
+        return result;
+    }
+    else
+    {
+          return returnSize; 
+    }
+    
+    }
+}
