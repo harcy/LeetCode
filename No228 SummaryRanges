@@ -1,0 +1,75 @@
+/* Code ONE myself code,so suck!!!!
+* Code Two copy code from website, codes are nice
+*/
+
+// Code ONE
+public class Solution {
+    public List<String> summaryRanges(int[] nums) {
+        
+	        List<String> myList=new ArrayList<String>();
+	        int len=nums.length;
+	        if(len==1)
+	        {
+	            myList.add(String.valueOf(nums[0]));
+	            return myList;
+	        }
+	        int i=0;
+	        int j=i+1;
+	        while(j<len)
+	        {
+	            if(nums[j]!=(nums[i]+1))
+	            {
+	            	 myList.add(String.valueOf(nums[i]));
+	            	 if(j==len-1)
+	            	 {
+	            		 myList.add(String.valueOf(nums[j]));
+	            		 j++;
+	            	 }	            		 
+	            	 else
+	            	 {
+	            		 i++;
+	            		 j++;
+	            	 }
+	            		 
+	             }
+	            else
+	            {
+	               while(j<len && (nums[j]==(nums[j-1]+1)) )
+	                     j++;
+	                myList.add(String.valueOf(nums[i])+"->"+String.valueOf(nums[j-1]));
+	                i=j;
+	                j++;
+	            }
+	        }
+	        if(i==(len-1))
+	        	myList.add(String.valueOf(nums[i]));
+	        return myList;d
+	    
+    }
+}
+
+//Code TWO
+public class Solution {  
+    // [0,1,2,4,5,7], return ["0->2","4->5","7"].   
+    public List<String> summaryRanges(int[] nums) {  
+        List<String> res = new ArrayList<>();  
+        if(nums==null || nums.length<1) return  res;  
+          
+        int s=0, e=0;  
+        while(e<nums.length) {  
+            if(e+1<nums.length && nums[e+1]==nums[e]+1) {  
+                e++;  
+            } else {  
+                if(s==e) {  
+                    res.add(Integer.toString(nums[s]));  
+                } else {  
+                    String str = nums[s] + "->" + nums[e];  
+                    res.add(str);  
+                }  
+                ++e;  
+                s = e;  
+            }  
+        }  
+        return res;  
+    }  
+}  
