@@ -1,0 +1,30 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+int TraverseTree(struct TreeNode* root)
+{
+    if(root==NULL)
+       return 0;
+    int i=TraverseTree(root->left);
+    int j=TraverseTree(root->right);
+    if(i>=j)
+       return i+1;
+    else
+       return j+1;
+    
+} 
+ 
+bool isBalanced(struct TreeNode* root) {
+    if(root==NULL)
+       return true;
+    int depth=0;
+    depth=TraverseTree(root->left)-TraverseTree(root->right);
+    if(depth>1 || depth<-1)
+       return false;
+    return isBalanced(root->left)&&isBalanced(root->right);
+}
