@@ -1,0 +1,32 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+ 
+ //Recursvie Method
+ public class Solution {
+    static public boolean isMyFuction(TreeNode lNode,TreeNode rNode)
+    {
+        if(lNode==null && rNode==null)
+           return true;
+        if(lNode==null || rNode==null || lNode.val!=rNode.val)
+           return false;
+        return isMyFuction(lNode.left,rNode.right) && isMyFuction(lNode.right,rNode.left);
+    }  
+     
+    public boolean isSymmetric(TreeNode root) {
+        if(root==null)
+           return true;
+        if(root.left==null && root.right==null)
+           return true;
+        return isMyFuction(root.left,root.right);
+    }
+ }
+ 
+ //NoRecursive Method, use stack to imitate
+ ...............................................
