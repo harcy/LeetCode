@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/*
+*动态规划问题，需要思考出问题“状态”和“状态转移方程”，
+*该问题中，定义money数组，其中money[i]代表从第1~i个房子可以获得最大钱数，
+*对于第i个房子，只有“偷”和“不偷”两中选择，转移方程money[i]=mymax(money[i-1],money[i-2]+nums[i])，
+*表示若“偷”，则上一个房子必掉是不能偷的，所以获得钱数为money[i-2]+nums[i];
+     若“不偷”，则无所谓上一个房子是否偷，获得钱数即为money[i-1];
+*取两者之间的较大者，获得更多的钱数
+*/
+int mymax(int a,int b)
+{
+    return a>b?a:b;
+}
+
+int rob(int* nums, int numsSize) {
+    int i=0;
+    if(numsSize<=1)
+       return nums[i];
+    int *money=(int *)malloc(sizeof(int)*numsSize);
+    money[0]=nums[0];
+    money[1]=mymax(nums[0],nums[1]);
+    for(i=2;i<numsSize;i++)
+    {
+        money[i]=mymax(money[i-1],money[i-2]+nums[i]);
+    }
+    return money[i-1];
+}
